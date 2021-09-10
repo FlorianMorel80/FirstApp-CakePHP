@@ -1,14 +1,18 @@
 <?php 
-
+    // namespace représente le moyen d'encapsuler les éléments 
     namespace App\Controller;
 
     use App\Controller\AppController;
 
     class ArticlesController extends AppController{
-        public function initialize()
-        {
+
+
+        public function initialize() {
             parent::initialize();
             $this->loadComponent('Paginator');
+            // FlashComponent est un moyen de définir des messages de notifications à afficher après avoir envoyé un formulaire ou des données connues; 
+            // CakePHP appelle ces messages des "messages flash" qui sont écrit dans $_SESSION et affiché dans la view 
+
             $this->loadComponent('Flash');
         }
 
@@ -48,7 +52,11 @@
                 $article->user_id = 1;
 
                 if ($this->Articles->save($article)) {
+                    // On définit ici les messages de sessions. Les messages flash seront affiché sur la page suivante
+                    // Après la redirection 
                     $this->Flash->success(__('Votre article a été sauvegardé.'));
+                    // Après la sauvegarde, l'user est redirigé vers la liste des articles
+                    // Le paramètre "action => index" correspond à l'URL /articles c'est à dire l'action index du ArticlesController (Articles/index.ctp)
                     return $this->redirect(['action'=>'index']);
                 }
                     $this->Flash->error(__('Impossible d\'ajouter votre article.'));

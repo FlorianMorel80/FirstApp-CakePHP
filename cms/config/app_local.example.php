@@ -45,7 +45,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'my_app',
             'password' => 'secret',
-            'database' => 'train_cakephp',
+            'database' => 'my_app',
             'log' => true,
             'url' => env('DATABASE_URL', null),
         ],
