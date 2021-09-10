@@ -62,14 +62,19 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Articles', 'action' => 'display', 'index']);
-
+    $routes->connect('/', ['controller' => 'Articles', 'action' => 'index']);
+    $routes->connect('/', ['templates' => 'Articles', 'action' => 'index']);
+    
     /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Articles', 'action' => 'display']);
+    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    
 
+    /* ***************************************** ARTICLES **************************************** */
+    /* $routes->connect('/', ['controller' => 'Articles', 'action' => 'display', 'index']);
     /*
+    /* ************************************* END ARTICLES ****************************************
      * Connect catchall routes for all controllers.
      *
      * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
