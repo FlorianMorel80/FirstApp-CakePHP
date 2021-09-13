@@ -4,7 +4,7 @@
 // Nous utilisons le FormHelper pour générer l'ouverture du form HTML
 // Les lignes suivantes votn générer l'équivalent de : <form method="post" action="/articles/add">
 // En ne passant pas d'option URL, FormHelper va partir du principe que le formulaire doit être soumis sur l'action courante
-    echo $this->Form->create($articles);
+    echo $this->Form->create($article);
     // $thi->Form->control est utilisé ici pour créer un élément de formulaire du même nom 
     // En premier param : indique à CakePHP le champs auquel il correspond
     // En second param : permet de définir un grand nombre d'options tel que le nb de ligne pour le textarea 

@@ -33,6 +33,8 @@
             $this->set(compact('article'));
         }
 
+
+        //*********************************** ADD ******************************************************** */
         //L'action add() fait : 
             // - si la méthode est en POST alors ça tentera de sauvegarder les données en utlisant le model Articles
             // - si la sauvegarde ne se fait pas, cela rendra juste la view permettant aussi de montrer les erreurs de validations et les messages à l'utilisateur
@@ -63,7 +65,43 @@
             }
                 $this->set('article', $article);
         }
+
+        //****************************END OF ADD **************************************************** */
+
+        // **************************** EDIT **************************************************
+        public function edit($slug) {
+            // firstOrFail va retourner le premier enregistrement trouvé en bdd; 
+            // Si aucun modèle n'existe, il retournera une erreur
+            $article = $this->Articles->findBySlug($slug)->firstOrFail();
+
+            // L'action va vérifier si la requête est en post ou put; si oui, alors l'entity sera mis à jour par les nouvelles données
+            // via la méthode patchEntity()
+            if($this->request->is(['post', 'put'])) {
+                $this->Articles->patchEntity($article, $this->request->getData());
+
+                if($this->Articles->save($article)){
+                    $this->Flash->success(__('Votre article a été mis à jour'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Impossible de mettre à jour l\'article.'));
+
+            }
+        }
+        // ***************************END OF EDIT ***********************************************
     
+
+        //******************************DELETE*********************************************** */
+        public function delete($slug) {
+            // Ici, si l'user essai de supprimer l'article en méthode get alors allowmethod lancera une exception avec un message d'erreur
+            $this->request->allowMethod(['post', 'delete']);
+            $article = $this->Articles->findBySlug($slug)->firstOrFail();
+
+            if($this->Articles->delete($article)){
+                $this->Flash->success(__('L\'article {0} à bien été supprimé', $article->title));
+                return $this->redirect(['action' => 'index']);
+            }
+        }
+        //***************************END OF DELETE******************************************* */
     }
 
 ?>

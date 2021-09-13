@@ -7,7 +7,7 @@
 
     
 
-    class ArticlesTable extends Table {
+    class UsersTable extends Table {
 
         public function initialize(array $config)
         {
@@ -18,10 +18,10 @@
         // Stopper cet event va  annuer l'opération de sauvegarde
         public function beforeSave($event, $entity, $options) {
             if ($entity->isNew() && !$entity->slug) {
-                $sluggedTitle = Text::slug($entity->title);
+                $sluggedID = Text::slug($entity->id);
                 // On ne garde que le nombre de caractère correspondant à la longueur
                 // maximum définie dans notre schéma
-                $entity->slug = substr($sluggedTitle, 0, 191);
+                $entity->slug = substr($sluggedID, 0, 191);
             }
 
         }
@@ -30,13 +30,10 @@
         public function validationDefault(Validator $validator)
         {
             $validator
-                ->notBlank('title')
-                ->minLength('title', 10)
-                ->maxLength('title', 255)
+                ->notBlank('email')
+                ->minLength('email', 10)
+                ->maxLength('email', 255);
 
-                ->notBlank('body')
-                ->minLength('body', 10);
-            
                 return $validator;
         }
     }
