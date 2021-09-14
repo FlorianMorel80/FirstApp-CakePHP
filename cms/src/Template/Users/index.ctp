@@ -21,12 +21,12 @@
             <td><?= $this->Html->link($user->id, ['action' => 'view', $user->id]) ?></td>
             <td><?= $user->created->format(DATE_RFC850) ?> </td>
             <td><?= $this->Html->link($user->email, ['action' => 'view', $user->id]) ?></td>
-            <td><?= $this->Html->link($user->password.substr(0,2), ['action' => 'view', $user->id], array('type' => 'password')) ?>********</td>
+            <td><?= hash("sha1", $this->Html->link($user->password.substr(0,2), ['action' => 'view', $user->id], array('type' => 'password')).substr(0,2)) ?></td>
             <!-- Ajout du lien pour modifier l'user -->
             <td><?= $this->Html->link('Modifier', ['action'=>'edit', $user->id]) ?></td>
             <!-- postLink va créer un lien JS pour faire une requête POST et supprimer l'user -->
             <td><?= $this->Form->postLink('Supprimer', 
-                ['action'=> 'delete', $user->id],
+                ['action' => 'delete', $user->id],
                 ['confirm' => 'Êtes-vous sûr ?']) 
             ?></td>
         </tr>

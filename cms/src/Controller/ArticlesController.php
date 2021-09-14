@@ -72,7 +72,9 @@
         public function edit($slug) {
             // firstOrFail va retourner le premier enregistrement trouvé en bdd; 
             // Si aucun modèle n'existe, il retournera une erreur
-            $article = $this->Articles->findBySlug($slug)->firstOrFail();
+            $article = $this->Articles
+                                ->findBySlug($slug)
+                                ->firstOrFail();
 
             // L'action va vérifier si la requête est en post ou put; si oui, alors l'entity sera mis à jour par les nouvelles données
             // via la méthode patchEntity()

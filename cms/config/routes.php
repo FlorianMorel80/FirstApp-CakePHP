@@ -63,8 +63,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     //Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-    Router::connect('/', ['controller' => 'Users', 'action' => 'index']);
-    Router::connect('/', ['controller' => 'Articles', 'action' => 'index']);
+    //Router::connect('/', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'Articles', 'action' => 'index']);
     
 
     $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);

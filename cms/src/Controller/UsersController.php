@@ -54,4 +54,16 @@
 
             }
         }
+
+
+        public function delete($id) {
+            // Ici, si l'user essai de supprimer l'article en méthode get alors allowmethod lancera une exception avec un message d'erreur
+            $this->request->allowMethod(['post', 'delete']);
+            $user = $this->Users->findById($id)->firstOrFail();
+
+            if($this->Users->delete($user)){
+                $this->Flash->success(__('L\'user {0} à bien été supprimé', $user->id));
+                return $this->redirect(['action' => 'index']);
+            }
+        }
     }
