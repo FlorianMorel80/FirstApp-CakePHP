@@ -9,6 +9,7 @@
 
     class ArticlesTable extends Table {
 
+        //hook de 
         public function initialize(array $config)
         {
             $this->addBehavior('Timestamp');
@@ -29,13 +30,16 @@
         // La méthode validationDefault va indiquer à CakePHP comment valider les données quand la méthode save() est appelé
         public function validationDefault(Validator $validator)
         {
+            $minCarac = 'Doit contenir au minimum 10 caractères';
+            $maxCarac = 'Nombre de caractère maximum dépassé';
+
             $validator
                 ->notBlank('title')
-                ->minLength('title', 10)
-                ->maxLength('title', 255)
+                ->minLength('title', 10, $minCarac)
+                ->maxLength('title', 255, $maxCarac)
 
                 ->notBlank('body')
-                ->minLength('body', 10);
+                ->minLength('body', 10, $minCarac);
             
                 return $validator;
         }

@@ -44,10 +44,16 @@ $descriptionProject = 'Prmeier essai sur CakePHP';
 <header class="row">
     <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
     <div class="header-title">
-        <h1><?= $descriptionProject;  ?>
+        <h1 class="text-center"><?= $descriptionProject;  ?>
     </div>
 </header>
-
+<nav class="crumbs">
+    <ol>
+        <li class="crumb"><a href="../Articles">Articles</a></li>
+        <li class="crumb"><a href="../Users/index.ctp">Users</a></li>
+        <li class="crumb">Jump Bike 3000</li>
+    </ol>
+</nav>
 
 </body>
 </html>

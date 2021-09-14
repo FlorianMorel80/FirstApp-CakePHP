@@ -13,6 +13,7 @@
     echo $this->Form->button(__('Sauvegarder l\'article'));
     // va fermer le formulaire 
     // Ensuite il faut ajouter le lien sur de la page add.ctp sur l'index.ctp
+    // $this->Form->end ferme le formulaire
     echo $this->Form->end();
 
 ?> 
